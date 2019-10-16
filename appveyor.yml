@@ -112,5 +112,4 @@ after_test:
  # - if [%COMPILER%]==[MinGW-w64] copy binaries\xmlsec %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
   
 artifacts:
-  - path: %ARTIFACTS_FOLDER%
-
+  - path: C:\artifacts
