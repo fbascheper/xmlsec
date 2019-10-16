@@ -27,7 +27,7 @@ image:
 
 environment:
   global:
-    ARTIFACTS_FOLDER: C:\artifacts
+    ARTIFACTS_FOLDER: C:\projects\xmlsec\artifacts
     EXTRAS_FOLDER: C:\extras
     EXTRAS_URL: https://www.aleksey.com/xmlsec/download/extras
     LIBXML2_FILE: libxml2-2.9.8-noiconv-win-x64.7z
@@ -109,7 +109,7 @@ test_script:
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
   - if [%COMPILER%]==[MSVC17] copy win32\binaries\xmlsec.exe %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
- # - if [%COMPILER%]==[MinGW-w64] copy binaries\xmlsec %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
+  - if [%COMPILER%]==[MinGW-w64] copy binaries\xmlsec %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%
   
 artifacts:
-  - path: C:\artifacts
+  - path: artifacts
