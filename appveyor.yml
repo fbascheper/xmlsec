@@ -27,6 +27,7 @@ image:
 
 environment:
   global:
+    ARTIFACTS_FOLDER: C:\artifacts
     EXTRAS_FOLDER: C:\extras
     EXTRAS_URL: https://www.aleksey.com/xmlsec/download/extras
     LIBXML2_FILE: libxml2-2.9.8-noiconv-win-x64.7z
@@ -46,36 +47,37 @@ environment:
       UNICODE: yes
       WERROR: yes
 
-    - COMPILER: MSVC17
-      CRYPTO: openssl
-      STATIC: no
-      UNICODE: yes
-      WERROR: no
-
-    - COMPILER: MSVC17
-      CRYPTO: mscrypto
-      STATIC: no
-      UNICODE: no
-      WERROR: yes
-
-    - COMPILER: MSVC17
-      CRYPTO: mscng
-      STATIC: no
-      UNICODE: no
-      WERROR: yes
-
-    - COMPILER: MinGW-w64
-      STATIC: no
-      UNICODE: yes
-    
-    - COMPILER: MinGW-w64
-      STATIC: yes
-      UNICODE: no
+#    - COMPILER: MSVC17
+#      CRYPTO: openssl
+#      STATIC: no
+#      UNICODE: yes
+#      WERROR: no
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: mscrypto
+#      STATIC: no
+#      UNICODE: no
+#      WERROR: yes
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: mscng
+#      STATIC: no
+#      UNICODE: no
+#      WERROR: yes
+#
+#    - COMPILER: MinGW-w64
+#      STATIC: no
+#      UNICODE: yes
+#    
+#    - COMPILER: MinGW-w64
+#      STATIC: yes
+#      UNICODE: no
 
 init:
   - git config --global core.autocrlf input
   - if [%COMPILER%]==[MinGW-w64] set PATH=C:\msys64\usr\bin;C:\msys64\mingw64\bin;%PATH%
   - if [%COMPILER%]==[MSVC17] set PATH=%EXTRAS_FOLDER%\bin;%EXTRAS_FOLDER%\lib;;%PATH%
+  - mkdir %ARTIFACTS_FOLDER%
     
 install:
   - if [%COMPILER%]==[MinGW-w64] pacman --noconfirm --sync --refresh --refresh --sysupgrade --sysupgrade
@@ -103,4 +105,12 @@ test_script:
   - if [%COMPILER%]==[MinGW-w64] make check
   - if [%COMPILER%]==[MSVC17] nmake check
 
+# scripts to run after tests
+after_test:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - if [%COMPILER%]==[MSVC17] copy win32\binaries\xmlsec.exe %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
+ # - if [%COMPILER%]==[MinGW-w64] copy binaries\xmlsec %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
+  
+artifacts:
+  - path: %ARTIFACTS_FOLDER%
 
