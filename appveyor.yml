@@ -128,8 +128,8 @@ after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y win32\binaries\*.dll %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MSVC17]    xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MinGW-w64] xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
+  # - if [%COMPILER%]==[MSVC17]    xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
+  # - if [%COMPILER%]==[MinGW-w64] xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
   
 artifacts:
-  - path: artifacts
+  - path: .
