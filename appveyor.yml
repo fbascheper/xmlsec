@@ -71,25 +71,25 @@ environment:
       UNICODE: yes
       WERROR: no
 
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-#    - COMPILER: MinGW-w64
-#      STATIC: no
-#      UNICODE: yes
-#    
-#    - COMPILER: MinGW-w64
-#      STATIC: yes
-#      UNICODE: no
+    - COMPILER: MSVC17
+      CRYPTO: mscrypto
+      STATIC: no
+      UNICODE: no
+      WERROR: yes
+
+    - COMPILER: MSVC17
+      CRYPTO: mscng
+      STATIC: no
+      UNICODE: no
+      WERROR: yes
+
+    - COMPILER: MinGW-w64
+      STATIC: no
+      UNICODE: yes
+    
+    - COMPILER: MinGW-w64
+      STATIC: yes
+      UNICODE: no
 
 init:
   - git config --global core.autocrlf input
