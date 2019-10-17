@@ -83,13 +83,13 @@ environment:
 #      UNICODE: no
 #      WERROR: yes
 #
-    - COMPILER: MinGW-w64
-      STATIC: yes
-      UNICODE: no
-
-    - COMPILER: MinGW-w64
-      STATIC: no
-      UNICODE: yes
+#    - COMPILER: MinGW-w64
+#      STATIC: yes
+#      UNICODE: no
+#
+#    - COMPILER: MinGW-w64
+#      STATIC: no
+#      UNICODE: yes
 
 init:
   - git config --global core.autocrlf input
@@ -126,12 +126,18 @@ test_script:
 # scripts to run after tests
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - 7z a -r myapp.zip %APPVEYOR_BUILD_FOLDER% %EXTRAS_FOLDER%
+  - 7z a -r xmlsec-build.zip      %APPVEYOR_BUILD_FOLDER%
+  - 7z a -r xmlsec-extras-bin.zip %EXTRAS_FOLDER%\bin
+  - 7z a -r xmlsec-extras-lib.zip %EXTRAS_FOLDER%\lib
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y win32\binaries\*.dll %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MinGW-w64] xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
   
 artifacts:
-  - path: myapp.zip
-    name: MyApp
+  - path: xmlsec-build.zip
+    name: XmlSec-Build
+  - path: xmlsec-extras-bin.zip
+    name: XmlSec-Extras-Bin
+  - path: xmlsec-extras-lib.zip
+    name: XmlSec-Extras-Lib
