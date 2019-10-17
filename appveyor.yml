@@ -17,7 +17,7 @@ version: '1.2.29-{build}'
 shallow_clone: true
 skip_branch_with_pr: true
 skip_tags: true
-skip_commits:`
+skip_commits:
   files:
     - docs/*
     - man/*
