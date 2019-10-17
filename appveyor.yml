@@ -17,7 +17,7 @@ version: '1.2.29-{build}'
 shallow_clone: true
 skip_branch_with_pr: true
 skip_tags: true
-skip_commits:
+skip_commits:`
   files:
     - docs/*
     - man/*
@@ -47,49 +47,49 @@ environment:
 #      UNICODE: yes
 #      WERROR: yes
 #
-#    - COMPILER: MSVC17
-#      CRYPTO: openssl
-#      STATIC: yes
-#      UNICODE: yes
-#      WERROR: no
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: openssl
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: no
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-    - COMPILER: MinGW-w64
-      STATIC: no
+    - COMPILER: MSVC17
+      CRYPTO: openssl
+      STATIC: yes
       UNICODE: yes
-    
+      WERROR: no
+
+#    - COMPILER: MSVC17
+#      CRYPTO: mscrypto
+#      STATIC: no
+#      UNICODE: yes
+#      WERROR: yes
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: mscng
+#      STATIC: no
+#      UNICODE: yes
+#      WERROR: yes
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: openssl
+#      STATIC: no
+#      UNICODE: yes
+#      WERROR: no
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: mscrypto
+#      STATIC: no
+#      UNICODE: no
+#      WERROR: yes
+#
+#    - COMPILER: MSVC17
+#      CRYPTO: mscng
+#      STATIC: no
+#      UNICODE: no
+#      WERROR: yes
+#
     - COMPILER: MinGW-w64
       STATIC: yes
       UNICODE: no
+
+    - COMPILER: MinGW-w64
+      STATIC: no
+      UNICODE: yes
 
 init:
   - git config --global core.autocrlf input
@@ -126,9 +126,10 @@ test_script:
 # scripts to run after tests
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.dll %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MinGW-w64] xcopy /c /y  *                    %ARTIFACTS_FOLDER%
+  # - if [%COMPILER%]==[MSVC17]    xcopy /c /y win32\binaries\*.dll %ARTIFACTS_FOLDER%
+  # - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
+  - if [%COMPILER%]==[MSVC17]    xcopy /c /y /i *      %ARTIFACTS_FOLDER%
+  - if [%COMPILER%]==[MinGW-w64] xcopy /c /y /i *      %ARTIFACTS_FOLDER%
   
 artifacts:
   - path: artifacts
