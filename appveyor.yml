@@ -35,61 +35,61 @@ environment:
     OPENSSL_FILE: openssl-1.1.0h-x64.7z
 
   matrix:
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: yes
-#      UNICODE: yes
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: yes
-#      UNICODE: yes
-#      WERROR: yes
-#
+    - COMPILER: MSVC17
+      CRYPTO: mscrypto
+      STATIC: yes
+      UNICODE: yes
+      WERROR: yes
+
+    - COMPILER: MSVC17
+      CRYPTO: mscng
+      STATIC: yes
+      UNICODE: yes
+      WERROR: yes
+
     - COMPILER: MSVC17
       CRYPTO: openssl
       STATIC: yes
       UNICODE: yes
       WERROR: no
 
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: openssl
-#      STATIC: no
-#      UNICODE: yes
-#      WERROR: no
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscrypto
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-#    - COMPILER: MSVC17
-#      CRYPTO: mscng
-#      STATIC: no
-#      UNICODE: no
-#      WERROR: yes
-#
-#    - COMPILER: MinGW-w64
-#      STATIC: yes
-#      UNICODE: no
-#
-#    - COMPILER: MinGW-w64
-#      STATIC: no
-#      UNICODE: yes
+    - COMPILER: MSVC17
+      CRYPTO: mscrypto
+      STATIC: no
+      UNICODE: yes
+      WERROR: yes
+
+    - COMPILER: MSVC17
+      CRYPTO: mscng
+      STATIC: no
+      UNICODE: yes
+      WERROR: yes
+
+    - COMPILER: MSVC17
+      CRYPTO: openssl
+      STATIC: no
+      UNICODE: yes
+      WERROR: no
+
+    - COMPILER: MSVC17
+      CRYPTO: mscrypto
+      STATIC: no
+      UNICODE: no
+      WERROR: yes
+
+    - COMPILER: MSVC17
+      CRYPTO: mscng
+      STATIC: no
+      UNICODE: no
+      WERROR: yes
+
+    - COMPILER: MinGW-w64
+      STATIC: yes
+      UNICODE: no
+
+    - COMPILER: MinGW-w64
+      STATIC: no
+      UNICODE: yes
 
 init:
   - git config --global core.autocrlf input
