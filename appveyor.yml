@@ -126,7 +126,7 @@ test_script:
 # scripts to run after tests
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - 7z a -r myapp.zip %APPVEYOR_BUILD_FOLDER%
+  - 7z a -r myapp.zip %APPVEYOR_BUILD_FOLDER% %EXTRAS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y win32\binaries\*.dll %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
   # - if [%COMPILER%]==[MSVC17]    xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
@@ -134,4 +134,4 @@ after_test:
   
 artifacts:
   - path: myapp.zip
-    name: MyAp
+    name: MyApp
