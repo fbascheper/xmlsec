@@ -27,7 +27,7 @@ image:
 
 environment:
   global:
-    ARTIFACTS_FOLDER: C:\projects\xmlsec\artifacts
+    ARTIFACTS_FOLDER: C:\projects\xmlsec\artifacts\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%
     EXTRAS_FOLDER: C:\extras
     EXTRAS_URL: https://www.aleksey.com/xmlsec/download/extras
     LIBXML2_FILE: libxml2-2.9.8-noiconv-win-x64.7z
@@ -126,11 +126,9 @@ test_script:
 # scripts to run after tests
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - if [%COMPILER%]==[MSVC17] xcopy /c /y win32\binaries\xmlsec.exe %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
-  - if [%COMPILER%]==[MSVC17] xcopy /c /y win32\binaries\xmlseca.exe %ARTIFACTS_FOLDER%\xmlseca-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%.exe
-  - if [%COMPILER%]==[MSVC17] xcopy /c /y  win32\binaries\*.dll %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MSVC17] xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
-  - if [%COMPILER%]==[MinGW-w64] xcopy /c /y  binaries\xmlsec %ARTIFACTS_FOLDER%\xmlsec-%COMPILER%-%CRYPTO%-static-%STATIC%-unicode-%UNICODE%
+  - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.dll %ARTIFACTS_FOLDER%
+  - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
+  - if [%COMPILER%]==[MinGW-w64] xcopy /c /y  binaries\*           %ARTIFACTS_FOLDER%
   
 artifacts:
   - path: artifacts
