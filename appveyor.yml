@@ -127,13 +127,11 @@ test_script:
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%
   - 7z a -r xmlsec-build.zip      %APPVEYOR_BUILD_FOLDER%
-  - 7z a -r xmlsec-extras-bin.zip %EXTRAS_FOLDER%\bin
-  - 7z a -r xmlsec-extras-lib.zip %EXTRAS_FOLDER%\lib
-  # - if [%COMPILER%]==[MSVC17]    xcopy /c /y win32\binaries\*.dll %ARTIFACTS_FOLDER%
-  # - if [%COMPILER%]==[MSVC17]    xcopy /c /y  win32\binaries\*.exe %ARTIFACTS_FOLDER%
-  # - if [%COMPILER%]==[MSVC17]    xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
-  # - if [%COMPILER%]==[MinGW-w64] xcopy /c /s /y /i *      %ARTIFACTS_FOLDER%
-  
+  - if [%COMPILER%]==[MSVC17]     7z a -r xmlsec-extras-bin.zip %EXTRAS_FOLDER%\bin
+  - if [%COMPILER%]==[MSVC17]     7z a -r xmlsec-extras-lib.zip %EXTRAS_FOLDER%\lib
+  - if [%COMPILER%]==[MinGW-w64]  7z a -r xmlsec-extras-bin.zip C:\msys64\usr\bin
+  - if [%COMPILER%]==[MinGW-w64]  7z a -r xmlsec-extras-lib.zip C:\msys64\mingw64\bin
+    
 artifacts:
   - path: xmlsec-build.zip
     name: XmlSec-Build
