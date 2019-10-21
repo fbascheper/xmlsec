@@ -35,23 +35,10 @@ environment:
     OPENSSL_FILE: openssl-1.1.0h-x64.7z
 
   matrix:
-    - COMPILER: MSVC17
-      CRYPTO: mscrypto
-      STATIC: yes
-      UNICODE: yes
-      WERROR: yes
-
-    - COMPILER: MSVC17
-      CRYPTO: mscng
-      STATIC: yes
-      UNICODE: yes
-      WERROR: yes
-
-    - COMPILER: MSVC17
+    - COMPILER: MinGW-w64
       CRYPTO: openssl
-      STATIC: yes
+      STATIC: no
       UNICODE: yes
-      WERROR: no
 
     - COMPILER: MSVC17
       CRYPTO: mscrypto
@@ -82,14 +69,11 @@ environment:
       STATIC: no
       UNICODE: no
       WERROR: yes
-
-    - COMPILER: MinGW-w64
-      STATIC: yes
-      UNICODE: no
-
-    - COMPILER: MinGW-w64
-      STATIC: no
-      UNICODE: yes
+#
+#    - COMPILER: MinGW-w64
+#      STATIC: yes
+#      UNICODE: no
+#
 
 init:
   - git config --global core.autocrlf input
